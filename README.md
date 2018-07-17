@@ -1,8 +1,8 @@
-# ewasm-precompile-sha256
+# ewasm-precompiles
 
-Implementation of the SHA256 precompile in Rust.
+Implementation of the Ethereum precompiled contracts in Rust.
 
-Can be compiled using:
+Each of them be compiled using in their appropriate directory:
 
 ```
 cargo +nightly build --release --target wasm32-unknown-unknown

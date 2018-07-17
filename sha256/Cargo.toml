@@ -3,7 +3,7 @@ name = "ewasm-precompile-sha256"
 version = "0.1.0"
 authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
 license = "Apache-2.0"
-repository = "https://github.com/ewasm/ewasm-precompile-sha256"
+repository = "https://github.com/ewasm/ewasm-precompiles"
 description = "Ethereum SHA256 precompile in Rust"
 publish = false
 
