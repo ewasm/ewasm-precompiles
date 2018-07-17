@@ -1,0 +1,15 @@
+[package]
+name = "ewasm-precompile-ripemd160"
+version = "0.1.0"
+authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum RIPEMD160 precompile in Rust"
+publish = false
+
+[dependencies]
+ripemd160 = "0.7"
+ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api" }
+
+[lib]
+crate-type = ["cdylib"]
