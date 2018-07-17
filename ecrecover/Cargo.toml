@@ -1,0 +1,15 @@
+[package]
+name = "ewasm-precompile-ecrecover"
+version = "0.1.0"
+authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum ecrecover precompile in Rust"
+publish = false
+
+[dependencies]
+ewasm_api = "0.5"
+libsecp256k1 = "^0.1.13"
+
+[lib]
+crate-type = ["cdylib"]
