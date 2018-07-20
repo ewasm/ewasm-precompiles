@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+    "bls12pairing",
     "ecadd",
     "ecmul",
     "ecpairing",
