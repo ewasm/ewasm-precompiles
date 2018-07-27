@@ -1,0 +1,16 @@
+[package]
+name = "ewasm-precompile-ecpairing"
+version = "0.1.0"
+authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum ECPAIRING precompile in Rust"
+publish = false
+
+[dependencies]
+ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api" }
+ethereum-bn128 = { git = "https://github.com/ewasm/ethereum-bn128.rs" }
+parity-bytes = { git = "https://github.com/paritytech/parity-common" }
+
+[lib]
+crate-type = ["cdylib"]
