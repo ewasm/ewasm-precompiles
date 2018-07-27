@@ -9,9 +9,8 @@ pub extern fn main() {
   let length = ewasm_api::calldata_size();
   let input = ewasm_api::calldata_copy(0, length);
 
-  if length != 128 {
-    ewasm_api::revert();
-  }
+  // NOTE: no need to validate the input length as bn128_add will behave like EVM1.0 calldatacopy
+  // add keep imaginary zeroes.
 
   ewasm_api::consume_gas(500);
 
