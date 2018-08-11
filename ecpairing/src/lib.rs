@@ -25,7 +25,7 @@ pub extern fn main() {
   let mut output = vec![0u8; 32];
   match ethereum_bn128::bn128_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
     Ok(_) => {
-      ewasm_api::finish_data(output.to_vec());
+      ewasm_api::finish_data(&output.to_vec());
     }
     Err(_) => {
       ewasm_api::revert();

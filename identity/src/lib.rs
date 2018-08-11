@@ -12,5 +12,5 @@ pub extern fn main() {
 
   ewasm_api::consume_gas(total_cost as u64);
 
-  ewasm_api::finish_data(data);
+  ewasm_api::finish_data(&data);
 }
