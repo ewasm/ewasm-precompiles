@@ -18,5 +18,5 @@ pub extern fn main() {
   hasher.input(&data);
   let hash = hasher.result();
 
-  ewasm_api::finish_data(hash.to_vec());
+  ewasm_api::finish_data(&hash.to_vec());
 }
