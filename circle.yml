@@ -6,6 +6,8 @@ jobs:
       - image: rust:1
     steps:
       - checkout
+      - restore_cache:
+          key: project-cache
       - run:
           name: Update rustc
           command: |
@@ -21,4 +23,10 @@ jobs:
       - run:
           name: Build
           command: cargo build --release --target wasm32-unknown-unknown
+      - save_cache:
+          key: project-cache
+          paths:
+            - "~/.cargo"
+            - "/project/.cargo"
+            - "~/project/.cargo"
 
