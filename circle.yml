@@ -28,3 +28,5 @@ jobs:
           paths:
             - "~/.cargo"
             - "/project/.cargo"
+            - "~/project/.cargo"
+
