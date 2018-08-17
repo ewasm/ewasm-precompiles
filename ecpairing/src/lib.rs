@@ -7,7 +7,6 @@ use bytes::BytesRef;
 #[no_mangle]
 pub extern "C" fn main() {
     let length = ewasm_api::calldata_size();
-    let input = ewasm_api::calldata_copy(0, length);
 
     // NOTE: this validation will also be done by bn128_pairing
 
@@ -21,6 +20,8 @@ pub extern "C" fn main() {
     let total_cost = base_fee + (length / 192) * element_fee;
 
     ewasm_api::consume_gas(total_cost as u64);
+
+    let input = ewasm_api::calldata_copy(0, length);
 
     let mut output = vec![0u8; 32];
     match ethereum_bn128::bn128_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
