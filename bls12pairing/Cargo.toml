@@ -1,0 +1,16 @@
+[package]
+name = "ewasm-precompile-bls12pairing"
+version = "0.1.0"
+authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum BLS12-381 pairing precompile in Rust"
+publish = false
+
+[dependencies]
+ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.2.0" }
+ethereum-bls12 = { git = "https://github.com/ewasm/ethereum-bls12.rs" }
+parity-bytes = { git = "https://github.com/paritytech/parity-common" }
+
+[lib]
+crate-type = ["cdylib"]
