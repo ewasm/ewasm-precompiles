@@ -1,6 +1,6 @@
 [package]
 name = "ewasm-precompile-keccak256"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
 license = "Apache-2.0"
 repository = "https://github.com/ewasm/ewasm-precompiles"
@@ -8,7 +8,7 @@ description = "Ethereum Keccak-256 precompile in Rust"
 publish = false
 
 [dependencies]
-ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.2.0" }
+ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.4.0" }
 keccak-hash = { git = "https://github.com/paritytech/parity-common" }
 
 [lib]

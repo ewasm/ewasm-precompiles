@@ -13,11 +13,11 @@ pub extern "C" fn main() {
 
     ewasm_api::consume_gas(total_cost as u64);
 
-    let data = ewasm_api::calldata_copy(0, length);
+    let data = ewasm_api::unsafe_calldata_copy(0, length);
 
     let mut hasher = Sha256::default();
     hasher.input(&data);
     let hash = hasher.result();
 
-    ewasm_api::finish_data(&hash.to_vec());
+    ewasm_api::finish_data(&hash)
 }

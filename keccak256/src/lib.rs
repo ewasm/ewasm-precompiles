@@ -12,9 +12,9 @@ pub extern "C" fn main() {
 
     ewasm_api::consume_gas(total_cost as u64);
 
-    let data = ewasm_api::calldata_copy(0, length);
+    let data = ewasm_api::unsafe_calldata_copy(0, length);
 
     let hash = keccak_hash::keccak(data);
 
-    ewasm_api::finish_data(&hash.to_vec());
+    ewasm_api::finish_data(&hash)
 }

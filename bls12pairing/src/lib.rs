@@ -21,12 +21,12 @@ pub extern "C" fn main() {
 
     ewasm_api::consume_gas(total_cost as u64);
 
-    let input = ewasm_api::calldata_copy(0, length);
+    let input = ewasm_api::unsafe_calldata_copy(0, length);
 
     let mut output = vec![0u8; 32];
     match ethereum_bls12::bls12_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
         Ok(_) => {
-            ewasm_api::finish_data(&output.to_vec());
+            ewasm_api::finish_data(&output);
         }
         Err(_) => {
             ewasm_api::revert();
