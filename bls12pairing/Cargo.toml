@@ -9,8 +9,8 @@ publish = false
 
 [dependencies]
 ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.2.0" }
-pairing = { git = "https://github.com/zkcrypto/pairing" }
-rand = "0.4"
+ethereum-bls12 = { git = "https://github.com/ewasm/ethereum-bls12.rs" }
+parity-bytes = { git = "https://github.com/paritytech/parity-common" }
 
 [lib]
 crate-type = ["cdylib"]

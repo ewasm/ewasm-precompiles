@@ -1,20 +1,35 @@
+extern crate ethereum_bls12;
 extern crate ewasm_api;
-extern crate pairing;
-extern crate rand;
+extern crate parity_bytes as bytes;
 
-use rand::{Rand, SeedableRng, XorShiftRng};
-
-use pairing::bls12_381::*;
-use pairing::{CurveAffine, Engine};
+use bytes::BytesRef;
 
 #[no_mangle]
 pub extern "C" fn main() {
     let length = ewasm_api::calldata_size();
+
+    // NOTE: this validation will also be done by bls12_pairing
+
+    if length % 144 != 0 {
+        ewasm_api::revert();
+    }
+
+    // charge a base fee plus a word fee for every element
+    let base_fee = 100000;
+    let element_fee = 80000;
+    let total_cost = base_fee + (length / 144) * element_fee;
+
+    ewasm_api::consume_gas(total_cost as u64);
+
     let input = ewasm_api::calldata_copy(0, length);
 
-    ewasm_api::consume_gas(4000);
-
-    let mut rng = XorShiftRng::from_seed([0x5dbe6259, 0x8d313d76, 0x3237db17, 0xe5bc0654]);
-
-    Bls12::pairing(G1::rand(&mut rng), G2::rand(&mut rng));
+    let mut output = vec![0u8; 32];
+    match ethereum_bls12::bls12_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
+        Ok(_) => {
+            ewasm_api::finish_data(&output.to_vec());
+        }
+        Err(_) => {
+            ewasm_api::revert();
+        }
+    }
 }
