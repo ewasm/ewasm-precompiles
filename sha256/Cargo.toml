@@ -1,6 +1,6 @@
 [package]
 name = "ewasm-precompile-sha256"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
 license = "Apache-2.0"
 repository = "https://github.com/ewasm/ewasm-precompiles"
@@ -9,7 +9,7 @@ publish = false
 
 [dependencies]
 sha2 = "0.7"
-ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.2.0" }
+ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.4.0" }
 
 [lib]
 crate-type = ["cdylib"]
