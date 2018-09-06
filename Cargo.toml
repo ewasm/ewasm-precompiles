@@ -5,6 +5,7 @@ members = [
     "ecadd",
     "ecmul",
     "ecpairing",
+    "ed25519",
     "identity",
     "keccak256",
     "ripemd160",

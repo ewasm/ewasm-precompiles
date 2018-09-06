@@ -1,0 +1,27 @@
+[package]
+name = "ewasm-precompile-ed25519"
+version = "0.0.1"
+authors = ["Jared Wasinger <j-wasinger@hotmail.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum Ed25519 precompile in Rust"
+publish = false
+
+[dependencies]
+ewasm_api = "0.4"
+parity-bytes = { git = "https://github.com/paritytech/parity-common" }
+hex = "0.3.1"
+sha2 = "0.7.1"
+
+[dependencies.rand]
+version = "^0.5.5"
+
+[dependencies.ed25519-dalek]
+version = "=0.8.0"
+
+[dependencies.clear_on_drop]
+features = ["no_cc"]
+version = "^0.2.3"
+
+[lib]
+crate-type = ["cdylib"]
