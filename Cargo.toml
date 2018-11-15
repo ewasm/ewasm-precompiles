@@ -10,3 +10,6 @@ members = [
     "ripemd160",
     "sha256",
 ]
+
+[profile.release]
+lto = true
