@@ -13,6 +13,9 @@ jobs:
             rustup component add rustfmt-preview
             rustup update
       - run:
+          name: Install chisel
+          command: cargo install chisel
+      - run:
           name: Check formatting
           command: |
             rustfmt --version
@@ -20,5 +23,4 @@ jobs:
             git diff --exit-code
       - run:
           name: Build
-          command: cargo build --release --target wasm32-unknown-unknown
-
+          command: make
