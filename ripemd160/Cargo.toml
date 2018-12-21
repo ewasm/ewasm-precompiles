@@ -9,7 +9,7 @@ publish = false
 
 [dependencies]
 ripemd160 = "0.7"
-ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.4.0" }
+ewasm_api = "0.4"
 
 [lib]
 crate-type = ["cdylib"]

@@ -8,7 +8,7 @@ description = "Ethereum BLS12-381 pairing precompile in Rust"
 publish = false
 
 [dependencies]
-ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.4.0" }
+ewasm_api = "0.4"
 ethereum-bls12 = { git = "https://github.com/ewasm/ethereum-bls12.rs", tag = "0.1.0" }
 parity-bytes = { git = "https://github.com/paritytech/parity-common" }
 
