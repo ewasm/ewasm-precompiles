@@ -9,7 +9,7 @@ publish = false
 
 [dependencies]
 ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.4.0" }
-ethereum-bn128 = { git = "https://github.com/ewasm/ethereum-bn128.rs" }
+ethereum-bn128 = { git = "https://github.com/ewasm/ethereum-bn128.rs", tag = "0.0.1" }
 parity-bytes = { git = "https://github.com/paritytech/parity-common" }
 
 [lib]
