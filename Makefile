@@ -1,4 +1,4 @@
-TARGETS=bls12pairing ecadd ecmul ecpairing identity keccak256 ripemd160 sha256
+TARGETS=bls12pairing ecadd ecmul ecpairing ed25519 identity keccak256 ripemd160 sha256
 
 all:
 	@cargo build --release --target wasm32-unknown-unknown
