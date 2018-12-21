@@ -1,0 +1,15 @@
+[package]
+name = "ewasm-precompile-sha1"
+version = "0.1.0"
+authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum SHA1 precompile in Rust"
+publish = false
+
+[dependencies]
+sha1 = "0.6"
+ewasm_api = "0.5"
+
+[lib]
+crate-type = ["cdylib"]

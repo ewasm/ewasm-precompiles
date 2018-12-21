@@ -9,6 +9,7 @@ members = [
     "identity",
     "keccak256",
     "ripemd160",
+    "sha1",
     "sha256",
 ]
 
