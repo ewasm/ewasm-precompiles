@@ -2,6 +2,7 @@ extern crate ewasm_api;
 extern crate sha2;
 use sha2::{Digest, Sha256};
 
+#[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
     let length = ewasm_api::calldata_size();
