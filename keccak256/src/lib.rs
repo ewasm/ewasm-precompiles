@@ -1,6 +1,7 @@
 extern crate ewasm_api;
 extern crate keccak_hash;
 
+#[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
     let length = ewasm_api::calldata_size();

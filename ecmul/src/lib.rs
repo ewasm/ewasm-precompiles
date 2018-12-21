@@ -4,6 +4,7 @@ extern crate parity_bytes as bytes;
 
 use bytes::BytesRef;
 
+#[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
     // NOTE: no need to validate the input length as bn128_mul will behave like EVM1.0 calldatacopy

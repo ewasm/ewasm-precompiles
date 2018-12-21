@@ -1,5 +1,6 @@
 extern crate ewasm_api;
 
+#[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
     let length = ewasm_api::calldata_size();
