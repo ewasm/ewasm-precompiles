@@ -8,7 +8,7 @@ description = "Ethereum Keccak-256 precompile in Rust"
 publish = false
 
 [dependencies]
-ewasm_api = { git = "https://github.com/ewasm/ewasm-rust-api", tag = "0.4.0" }
+ewasm_api = "0.4"
 keccak-hash = { git = "https://github.com/paritytech/parity-common" }
 
 [lib]
