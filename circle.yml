@@ -13,8 +13,8 @@ jobs:
             rustup component add rustfmt-preview
             rustup update
       - run:
-          name: Install chisel
-          command: cargo install chisel
+          name: Install crates
+          command: cargo install chisel wasm-gc wasm-snip
       - run:
           name: Check formatting
           command: |
