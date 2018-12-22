@@ -10,7 +10,7 @@ edition = "2018"
 
 [dependencies]
 sha1 = "0.6"
-ewasm_api = "0.5"
+ewasm_api = "0.6"
 
 [lib]
 crate-type = ["cdylib"]
