@@ -24,7 +24,7 @@ pub extern "C" fn main() {
 
     let input = ewasm_api::unsafe_calldata_copy(0, length);
 
-    let mut output = vec![0u8; 32];
+    let mut output = [0u8; 32];
     match ethereum_bls12::bls12_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
         Ok(_) => {
             ewasm_api::finish_data(&output);
