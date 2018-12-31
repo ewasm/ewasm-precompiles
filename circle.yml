@@ -26,4 +26,4 @@ jobs:
           command: make
       - run:
           name: Tests
-          command: cargo test
+          command: cargo test --target=x86_64-unknown-linux-gnu
