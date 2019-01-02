@@ -4,6 +4,14 @@ extern crate sha2;
 
 mod verify;
 
+static TRUE_RES: [u8; 4] = [
+    0x00, 0x00, 0x00, 0x00,
+];
+
+static FALSE_RES: [u8; 4] = [
+    0xff, 0xff, 0xff, 0xff,
+];
+
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
@@ -23,10 +31,10 @@ pub extern "C" fn main() {
     tmp.copy_from_slice(&input);
     match verify::verify(&tmp) {
         Ok(true) => {
-            ewasm_api::finish_data(&[0x00u8; 4]);
+            ewasm_api::finish_data(&TRUE_RES);
         }
         Ok(false) => {
-            ewasm_api::finish_data(&[0xffu8; 4]);
+            ewasm_api::finish_data(&FALSE_RES);
         }
         Err(_) => {
             // FIXME: send the error message?
