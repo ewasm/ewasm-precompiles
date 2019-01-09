@@ -23,7 +23,9 @@ jobs:
             git diff --exit-code
       - run:
           name: Build
-          command: make
+          command: |
+            cargo build --release
+            chisel run
       - run:
           name: Tests
           command: cargo test --target=x86_64-unknown-linux-gnu
