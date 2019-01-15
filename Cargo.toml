@@ -6,6 +6,7 @@ members = [
     "ecadd",
     "ecmul",
     "ecpairing",
+    "ecadd/ecadd_benchmark",
     "ed25519",
     "identity",
     "keccak256",

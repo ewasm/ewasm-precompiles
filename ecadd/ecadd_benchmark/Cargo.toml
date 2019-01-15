@@ -1,0 +1,13 @@
+[package]
+name = "ecadd_benchmark"
+version = "0.1.0"
+authors = ["ewasm"]
+edition = "2018"
+
+[dependencies]
+ewasm_api = "0.5"
+ethereum-bn128 = { git = "https://github.com/ewasm/ethereum-bn128.rs", tag = "0.0.1" }
+parity-bytes = { git = "https://github.com/paritytech/parity-common" }
+
+[lib]
+crate-type = ["cdylib"]
