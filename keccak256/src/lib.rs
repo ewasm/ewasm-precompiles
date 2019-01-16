@@ -1,5 +1,9 @@
 extern crate ewasm_api;
 extern crate keccak_hash;
+extern crate wee_alloc;
+
+#[global_allocator]
+static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[cfg(not(test))]
 #[no_mangle]

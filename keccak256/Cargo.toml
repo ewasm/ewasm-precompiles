@@ -11,5 +11,8 @@ publish = false
 ewasm_api = "0.5"
 keccak-hash = { git = "https://github.com/paritytech/parity-common" }
 
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wee_alloc = "0.4.2"
+
 [lib]
 crate-type = ["cdylib"]
