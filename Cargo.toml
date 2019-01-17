@@ -10,6 +10,7 @@ members = [
     "ed25519",
     "identity",
     "keccak256",
+    "modexp",
     "ripemd160",
     "sha1",
     "sha256",
