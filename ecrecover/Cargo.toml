@@ -1,0 +1,21 @@
+
+[package]
+name = "ewasm-precompile-ecrecover"
+version = "0.1.0"
+authors = ["Guillaume Ballet <gballet@gmail.com>"]
+edition = "2018"
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum ecrecover precompile in Rust"
+publish = false
+
+[dependencies]
+ewasm_api = "0.5"
+libsecp256k1 = "^0.2.1"
+sha3 = "^0.6"
+
+[dev-dependencies]
+rustc-hex = "1.0"
+
+[lib]
+crate-type = ["cdylib"]
