@@ -17,7 +17,7 @@ sha2 = "0.7.1"
 version = "^0.5.5"
 
 [dependencies.ed25519-dalek]
-version = "=0.8.0"
+version = "^0.8.0"
 
 [dependencies.clear_on_drop]
 features = ["no_cc"]
