@@ -20,5 +20,9 @@ pub extern "C" fn main() {
     hasher.input(&data);
     let hash = hasher.result();
 
-    ewasm_api::finish_data(&hash)
+    // As per YP the 20 byte hash should be left-padded to 32 bytes
+    let mut padded_hash = vec![0; 12];
+    padded_hash.extend_from_slice(&hash);
+
+    ewasm_api::finish_data(&padded_hash)
 }
