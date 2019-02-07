@@ -72,7 +72,7 @@ pub extern "C" fn main() {
 
     match ecrecover(&input) {
         Ok(ret) => ewasm_api::finish_data(&ret[..]),
-        Err(e) => panic!("Error recovering public key: {:?}", e),
+        Err(_) => panic!(),
     }
 }
 
