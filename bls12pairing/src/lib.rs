@@ -2,11 +2,11 @@ extern crate ethereum_bls12;
 extern crate ewasm_api;
 extern crate parity_bytes as bytes;
 
-use bytes::BytesRef;
-
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
+    use bytes::BytesRef;
+
     let length = ewasm_api::calldata_size();
 
     // NOTE: this validation will also be done by bls12_pairing

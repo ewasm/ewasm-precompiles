@@ -1,11 +1,11 @@
 extern crate blake2;
 extern crate ewasm_api;
 
-use blake2::{Blake2b, Digest};
-
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
+    use blake2::{Blake2b, Digest};
+
     let length = ewasm_api::calldata_size();
 
     // charge a base fee plus a word fee for every 256-bit word
