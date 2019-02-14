@@ -1,9 +1,9 @@
 [package]
 name = "ewasm-precompile-modexp"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Guillaume Ballet <gballet@gmail.com>"]
 license = "Apache-2.0"
-repository = ""
+repository = "https://github.com/ewasm/ewasm-precompiles"
 description = "Ethereum modexp precompile in Rust"
 publish = false
 edition = "2018"
