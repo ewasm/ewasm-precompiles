@@ -1,10 +1,11 @@
 extern crate ewasm_api;
 extern crate sha2;
-use sha2::{Digest, Sha256};
 
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
+    use sha2::{Digest, Sha256};
+
     let length = ewasm_api::calldata_size();
 
     // charge a base fee plus a word fee for every 256-bit word

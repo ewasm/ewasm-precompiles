@@ -2,11 +2,11 @@ extern crate ethereum_bn128;
 extern crate ewasm_api;
 extern crate parity_bytes as bytes;
 
-use bytes::BytesRef;
-
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
+    use bytes::BytesRef;
+
     // NOTE: no need to validate the input length as bn128_mul will behave like EVM1.0 calldatacopy
     // add keep imaginary zeroes.
 
