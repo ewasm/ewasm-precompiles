@@ -6,7 +6,7 @@ use num_bigint::{BigInt, Sign};
 use std::cmp;
 #[cfg(not(test))]
 use std::io::{self, Read};
-use std::ops::Shl;
+use std::ops::{Rem, Shl};
 
 #[cfg(not(test))]
 const LENGTH_LENGTH: usize = 32;
@@ -32,8 +32,14 @@ fn calculate_cost(lm: usize, lb: usize, exp: &BigInt) -> u64 {
             }
         }
         _ => {
-            let low32bytes = exp.modpow(&BigInt::one(), &BigInt::one().shl(256));
-            let loglow32bytes = low32bytes.bits() as i64 - 1;
+            let nbits = exp.bits();
+            let (loglow32bytes, low32bytes) = if nbits > 256 {
+                let x = exp.rem(&BigInt::one().shl(256));
+                (x.bits() - 1, x)
+            } else {
+                (nbits - 1, exp.clone())
+            };
+
             if low32bytes > BigInt::zero() {
                 8 * (le as u64 - 32) + loglow32bytes as u64
             } else {
