@@ -72,7 +72,8 @@ pub extern "C" fn main() {
 
     match ecrecover(&input) {
         Ok(ret) => ewasm_api::finish_data(&ret[..]),
-        Err(_) => panic!(),
+        // NOTE: this should not result in an error, but return empty data.
+        Err(_) => ewasm_api::finish(),
     }
 }
 
@@ -198,6 +199,22 @@ mod tests {
             54, 214, 164, 45, 35, 105, 43, 170, 127,
         ];
 
+        assert_eq!(expected, output);
+    }
+
+    #[test]
+    fn rinkeby_block_922696() {
+        let input = vec![
+            18, 29, 74, 146, 225, 18, 73, 146, 175, 38, 117, 160, 255, 236, 4, 34, 146, 162, 98,
+            186, 197, 121, 106, 188, 25, 142, 20, 96, 130, 129, 57, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 31, 103, 111, 23,
+            112, 203, 66, 38, 98, 36, 34, 85, 11, 110, 114, 222, 119, 5, 222, 193, 55, 172, 122, 0,
+            200, 103, 130, 10, 169, 226, 46, 168, 75, 46, 205, 130, 46, 74, 151, 64, 88, 183, 130,
+            253, 126, 146, 11, 157, 188, 140, 127, 44, 33, 28, 243, 111, 91, 147, 100, 29, 141, 81,
+            137, 25,
+        ];
+        let output = ecrecover(&input);
+        let expected = Err(InvalidSignature);
         assert_eq!(expected, output);
     }
 }
