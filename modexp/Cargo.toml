@@ -9,8 +9,8 @@ publish = false
 edition = "2018"
 
 [dependencies]
-num = {version = "0.1.36", default-features = false}
-num-bigint = {version = "0.1.36", default-features = false}
+num = { version = "0.1.36", default-features = false }
+num-bigint = { version = "0.1.36", default-features = false }
 ewasm_api = "0.5"
 
 [lib]
