@@ -10,7 +10,7 @@ pub extern "C" fn main() {
     // NOTE: no need to validate the input length as bn128_add will behave like EVM1.0 calldatacopy
     // add keep imaginary zeroes.
 
-    ewasm_api::consume_gas(500);
+    // ewasm_api::consume_gas(500);
 
     let input = ewasm_api::calldata_acquire();
 

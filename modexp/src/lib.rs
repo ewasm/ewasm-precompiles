@@ -119,7 +119,7 @@ pub extern "C" fn main() {
         .expect("Should be able to read modulus bytes from input");
     let modulus = BigInt::from_bytes_be(Sign::Plus, &mod_bytes[..]);
 
-    ewasm_api::consume_gas(calculate_cost(mod_length, base_length, &exp));
+    // ewasm_api::consume_gas(calculate_cost(mod_length, base_length, &exp));
 
     // Geth's returns an empty array when base and mod both have
     // zero length.

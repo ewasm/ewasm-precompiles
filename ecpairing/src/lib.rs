@@ -20,7 +20,7 @@ pub extern "C" fn main() {
     let element_fee = 80000;
     let total_cost = base_fee + (length / 192) * element_fee;
 
-    ewasm_api::consume_gas(total_cost as u64);
+    // ewasm_api::consume_gas(total_cost as u64);
 
     let input = ewasm_api::unsafe_calldata_copy(0, length);
 

@@ -13,7 +13,7 @@ pub extern "C" fn main() {
     let word_fee = 12;
     let total_cost = base_fee + ((length + 31) / 32) * word_fee;
 
-    ewasm_api::consume_gas(total_cost as u64);
+    // ewasm_api::consume_gas(total_cost as u64);
 
     let data = ewasm_api::unsafe_calldata_copy(0, length);
 

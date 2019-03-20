@@ -61,7 +61,7 @@ pub extern "C" fn main() {
 
     const G_EC_RECOVER_GAS: u64 = 3000;
 
-    ewasm_api::consume_gas(G_EC_RECOVER_GAS);
+    // ewasm_api::consume_gas(G_EC_RECOVER_GAS);
 
     // Make sure that the input is 128 bytes
     let mut input = vec![0u8; HASH_LENGTH + REC_ID_LENGTH + COORD_LENGTH + SIG_LENGTH];
