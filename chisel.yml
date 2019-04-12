@@ -1,0 +1,91 @@
+blake2:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_blake2.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+bls12pairing:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_bls12pairing.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+ecadd:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecadd.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+ecmul:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecmul.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+ecpairing:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecpairing.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+ecrecover:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecrecover.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+ed25519:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ed25519.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+identity:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_identity.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+modexp:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_modexp.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+keccak256:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_keccak256.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+ripemd160:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ripemd160.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+sha1:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_sha1.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
+sh256:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_sha256.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+
