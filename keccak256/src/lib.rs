@@ -17,5 +17,5 @@ pub extern "C" fn main() {
 
     let hash = keccak_hash::keccak(data);
 
-    ewasm_api::finish_data(&hash)
+    ewasm_api::finish_data(&hash[..])
 }
