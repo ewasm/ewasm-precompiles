@@ -10,7 +10,7 @@ edition = "2018"
 
 [dependencies]
 ewasm_api = "0.9"
-sha3 = "^0.6"
+tiny-keccak = "1.4"
 
 [lib]
 crate-type = ["cdylib"]
