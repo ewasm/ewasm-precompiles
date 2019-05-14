@@ -22,7 +22,7 @@ pub extern "C" fn main() {
 
     ewasm_api::consume_gas(total_cost as u64);
 
-    let input = ewasm_api::unsafe_calldata_copy(0, length);
+    let input = ewasm_api::calldata_acquire();
 
     let mut output = [0u8; 32];
     match ethereum_bn128::bn128_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {

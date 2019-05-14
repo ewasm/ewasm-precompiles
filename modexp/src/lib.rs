@@ -74,7 +74,7 @@ pub extern "C" fn main() {
     // Geth will consider the input size to be 0 if it's less than
     // 96 bytes.
     let input = if input_size >= 96 {
-        ewasm_api::unsafe_calldata_copy(0 as usize, input_size)
+        ewasm_api::calldata_acquire()
     } else {
         vec![0u8; 0]
     };

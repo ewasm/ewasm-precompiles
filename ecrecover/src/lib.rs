@@ -66,8 +66,10 @@ pub extern "C" fn main() {
     // Make sure that the input is 128 bytes
     let mut input = vec![0u8; HASH_LENGTH + REC_ID_LENGTH + COORD_LENGTH + SIG_LENGTH];
     let common_length = cmp::min(input.len(), ewasm_api::calldata_size());
-    input[..common_length].copy_from_slice(
-        &ewasm_api::unsafe_calldata_copy(HASH_OFFSET as usize, common_length).as_slice(),
+    ewasm_api::unsafe_calldata_copy(
+        HASH_OFFSET as usize,
+        common_length,
+        &mut input[..common_length],
     );
 
     match ecrecover(&input) {
