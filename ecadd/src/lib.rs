@@ -17,6 +17,6 @@ pub extern "C" fn main() {
     let mut output = [0u8; 64];
     match ethereum_bn128::bn128_add(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
         Ok(_) => ewasm_api::finish_data(&output),
-        Err(_) => panic!(),
+        Err(_) => ewasm_api::abort(),
     }
 }
