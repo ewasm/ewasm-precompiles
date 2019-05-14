@@ -1,5 +1,7 @@
 extern crate ewasm_api;
-extern crate keccak_hash;
+extern crate sha3;
+
+use sha3::{Digest, Keccak256};
 
 #[cfg(not(test))]
 #[no_mangle]
@@ -15,7 +17,7 @@ pub extern "C" fn main() {
 
     let data = ewasm_api::unsafe_calldata_copy(0, length);
 
-    let hash = keccak_hash::keccak(data);
+    let hash = Keccak256::digest(&data[..]);
 
     ewasm_api::finish_data(&hash[..])
 }

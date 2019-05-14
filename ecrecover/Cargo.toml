@@ -11,7 +11,7 @@ edition = "2018"
 [dependencies]
 ewasm_api = "0.5"
 libsecp256k1 = "^0.2.1"
-keccak-hash = { git = "https://github.com/paritytech/parity-common", version = "0.1.2" }
+sha3 = "^0.6"
 
 [dev-dependencies]
 rustc-hex = "1.0"
