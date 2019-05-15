@@ -8,6 +8,8 @@ blake2:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 bls12pairing:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_bls12pairing.wasm"
@@ -18,6 +20,8 @@ bls12pairing:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  repack:
     preset: "ewasm"
 
 ecadd:
@@ -30,6 +34,8 @@ ecadd:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 ecmul:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecmul.wasm"
@@ -40,6 +46,8 @@ ecmul:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  repack:
     preset: "ewasm"
 
 ecpairing:
@@ -52,6 +60,8 @@ ecpairing:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 ecrecover:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecrecover.wasm"
@@ -62,6 +72,8 @@ ecrecover:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  repack:
     preset: "ewasm"
 
 ed25519:
@@ -74,6 +86,8 @@ ed25519:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 identity:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_identity.wasm"
@@ -84,6 +98,8 @@ identity:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  repack:
     preset: "ewasm"
 
 modexp:
@@ -96,6 +112,8 @@ modexp:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 keccak256:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_keccak256.wasm"
@@ -106,6 +124,8 @@ keccak256:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  repack:
     preset: "ewasm"
 
 ripemd160:
@@ -118,6 +138,8 @@ ripemd160:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 sha1:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_sha1.wasm"
@@ -129,6 +151,8 @@ sha1:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  repack:
+    preset: "ewasm"
 
 sh256:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_sha256.wasm"
@@ -139,4 +163,6 @@ sh256:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  repack:
     preset: "ewasm"
