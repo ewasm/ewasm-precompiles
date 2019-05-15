@@ -4,12 +4,20 @@ blake2:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
 
 bls12pairing:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_bls12pairing.wasm"
   remapimports:
     preset: "ewasm"
   trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
     preset: "ewasm"
 
 ecadd:
@@ -18,12 +26,20 @@ ecadd:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
 
 ecmul:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecmul.wasm"
   remapimports:
     preset: "ewasm"
   trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
     preset: "ewasm"
 
 ecpairing:
@@ -32,12 +48,20 @@ ecpairing:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
 
 ecrecover:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_ecrecover.wasm"
   remapimports:
     preset: "ewasm"
   trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
     preset: "ewasm"
 
 ed25519:
@@ -46,12 +70,20 @@ ed25519:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
 
 identity:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_identity.wasm"
   remapimports:
     preset: "ewasm"
   trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
     preset: "ewasm"
 
 modexp:
@@ -60,12 +92,20 @@ modexp:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
 
 keccak256:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_keccak256.wasm"
   remapimports:
     preset: "ewasm"
   trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
     preset: "ewasm"
 
 ripemd160:
@@ -74,12 +114,20 @@ ripemd160:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
 
 sha1:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_sha1.wasm"
   remapimports:
     preset: "ewasm"
   trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
     preset: "ewasm"
 
 sh256:
@@ -88,4 +136,7 @@ sh256:
     preset: "ewasm"
   trimexports:
     preset: "ewasm"
-
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
