@@ -9,7 +9,7 @@ publish = false
 edition = "2018"
 
 [dependencies]
-ewasm_api = "0.6"
+ewasm_api = "0.8"
 parity-bytes = { git = "https://github.com/paritytech/parity-common", version = "0.1.0" }
 hex = "0.3.1"
 sha2 = "0.7.1"

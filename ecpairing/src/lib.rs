@@ -12,7 +12,7 @@ pub extern "C" fn main() {
     // NOTE: this validation will also be done by bn128_pairing
 
     if length % 192 != 0 {
-        panic!();
+        ewasm_api::abort();
     }
 
     // charge a base fee plus a word fee for every element
@@ -27,6 +27,6 @@ pub extern "C" fn main() {
     let mut output = [0u8; 32];
     match ethereum_bn128::bn128_pairing(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
         Ok(_) => ewasm_api::finish_data(&output),
-        Err(_) => panic!(),
+        Err(_) => ewasm_api::abort(),
     }
 }
