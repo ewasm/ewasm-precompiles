@@ -10,7 +10,11 @@ edition = "2018"
 
 [dependencies]
 blake2 = "0.7"
-ewasm_api = "0.9"
+
+[dependencies.ewasm_api]
+version = "0.9"
+default-features = false
+features = ["std", "qimalloc"]
 
 [lib]
 crate-type = ["cdylib"]

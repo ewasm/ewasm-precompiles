@@ -9,8 +9,12 @@ publish = false
 edition = "2018"
 
 [dependencies]
-ewasm_api = "0.9"
 tiny-keccak = "1.4"
+
+[dependencies.ewasm_api]
+version = "0.9"
+default-features = false
+features = ["std", "qimalloc"]
 
 [lib]
 crate-type = ["cdylib"]
