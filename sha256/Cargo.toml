@@ -9,8 +9,8 @@ publish = false
 edition = "2018"
 
 [dependencies]
+ewasm_api = "0.9"
 sha2 = "0.7"
-ewasm_api = "0.8"
 
 [lib]
 crate-type = ["cdylib"]

@@ -9,7 +9,7 @@ publish = false
 edition = "2018"
 
 [dependencies]
-ewasm_api = "0.8"
+ewasm_api = "0.9"
 sha3 = "^0.6"
 
 [lib]

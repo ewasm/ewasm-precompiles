@@ -9,7 +9,7 @@ publish = false
 edition = "2018"
 
 [dependencies]
-ewasm_api = "0.8"
+ewasm_api = "0.9"
 ethereum-bls12 = { git = "https://github.com/ewasm/ethereum-bls12.rs", tag = "0.1.1" }
 parity-bytes = { git = "https://github.com/paritytech/parity-common", version = "0.1.0" }
 
