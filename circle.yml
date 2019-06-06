@@ -10,7 +10,7 @@ jobs:
           name: Update rustc
           command: |
             rustup target add wasm32-unknown-unknown
-            rustup component add rustfmt-preview
+            rustup component add rustfmt
             rustup update
       - run:
           name: Install chisel
@@ -19,8 +19,7 @@ jobs:
           name: Check formatting
           command: |
             rustfmt --version
-            cargo fmt
-            git diff --exit-code
+            cargo fmt --all -- --check
       - run:
           name: Build
           command: |
