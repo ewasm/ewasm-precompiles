@@ -1,12 +1,9 @@
 extern crate ethereum_bn128;
 extern crate ewasm_api;
-extern crate parity_bytes as bytes;
 
 #[cfg(not(test))]
 #[no_mangle]
 pub extern "C" fn main() {
-    use bytes::BytesRef;
-
     // NOTE: no need to validate the input length as bn128_mul will behave like EVM1.0 calldatacopy
     // add keep imaginary zeroes.
 
@@ -15,7 +12,7 @@ pub extern "C" fn main() {
     let input = ewasm_api::calldata_acquire();
 
     let mut output = [0u8; 64];
-    match ethereum_bn128::bn128_mul(&input[..], &mut BytesRef::Fixed(&mut output[..])) {
+    match ethereum_bn128::bn128_mul(&input[..], &mut output) {
         Ok(_) => ewasm_api::finish_data(&output),
         Err(_) => ewasm_api::abort(),
     }
