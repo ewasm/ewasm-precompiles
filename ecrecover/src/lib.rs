@@ -1,11 +1,10 @@
 extern crate ewasm_api;
 extern crate secp256k1;
-extern crate sha3;
+extern crate tiny_keccak;
 
 #[cfg(test)]
 use secp256k1::Error::InvalidSignature;
 use secp256k1::{recover, Message, RecoveryId, Signature};
-use sha3::{Digest, Keccak256};
 use std::cmp::min;
 
 const HASH_OFFSET: usize = 0;
@@ -16,6 +15,12 @@ const COORD_OFFSET: usize = REC_ID_OFFSET + REC_ID_LENGTH;
 const COORD_LENGTH: usize = 32;
 const SIG_OFFSET: usize = COORD_OFFSET + COORD_LENGTH;
 const SIG_LENGTH: usize = 32;
+
+fn keccak(input: &[u8]) -> [u8; 32] {
+    let mut hash = [0u8; 32];
+    tiny_keccak::Keccak::keccak256(&input, &mut hash);
+    hash
+}
 
 fn ecrecover(input: &[u8]) -> Result<Vec<u8>, secp256k1::Error> {
     let hash_start = min(HASH_OFFSET, input.len());
@@ -48,7 +53,7 @@ fn ecrecover(input: &[u8]) -> Result<Vec<u8>, secp256k1::Error> {
 
     let key = recover(&message, &sig, &rec_id)?;
     let ret = key.serialize();
-    let ret = Keccak256::digest(&ret[1..65]);
+    let ret = keccak(&ret[1..65]);
     let mut output = vec![0u8; 12];
     output.extend_from_slice(&ret[12..32]);
     Ok(output)
