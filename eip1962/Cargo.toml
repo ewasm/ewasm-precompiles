@@ -1,0 +1,17 @@
+[package]
+name = "ewasm-precompile-eip1962"
+version = "0.2.0"
+authors = ["Alex Beregszaszi <alex@rtfs.hu>"]
+license = "Apache-2.0"
+repository = "https://github.com/ewasm/ewasm-precompiles"
+description = "Ethereum EIP1962 precompile in Rust"
+publish = false
+edition = "2018"
+
+[dependencies]
+ewasm_api = "0.9"
+# 0.2.0
+eth_pairings = { git = "https://github.com/matter-labs/eip1962", rev = "6a06b44cd8d5dd9265480312a08b4a7c69fbbbe0" }
+
+[lib]
+crate-type = ["cdylib"]

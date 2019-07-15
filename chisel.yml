@@ -89,6 +89,19 @@ ed25519:
   repack:
     preset: "ewasm"
 
+eip1962:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_eip1962.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
+  repack:
+    preset: "ewasm"
+
 identity:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_identity.wasm"
   remapimports:
