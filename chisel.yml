@@ -8,6 +8,8 @@ blake2:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -20,6 +22,8 @@ bls12pairing:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
@@ -34,6 +38,8 @@ ecadd:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -46,6 +52,8 @@ ecmul:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
@@ -60,6 +68,8 @@ ecpairing:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -72,6 +82,8 @@ ecrecover:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
@@ -86,6 +98,8 @@ ed25519:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -98,6 +112,8 @@ eip1962:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
@@ -112,6 +128,8 @@ identity:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -124,6 +142,8 @@ modexp:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
@@ -138,6 +158,8 @@ keccak256:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -150,6 +172,8 @@ ripemd160:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
@@ -164,6 +188,8 @@ sha1:
     preset: "ewasm"
   verifyexports:
     preset: "ewasm"
+  snip:
+    preset: "ewasm"
   repack:
     preset: "ewasm"
 
@@ -176,6 +202,8 @@ sh256:
   verifyimports:
     preset: "ewasm"
   verifyexports:
+    preset: "ewasm"
+  snip:
     preset: "ewasm"
   repack:
     preset: "ewasm"
