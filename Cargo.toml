@@ -8,6 +8,7 @@ members = [
     "ecpairing",
     "ecrecover",
     "ed25519",
+    "eip1962",
     "identity",
     "keccak256",
     "modexp",
