@@ -9,7 +9,7 @@ publish = false
 edition = "2018"
 
 [dependencies]
-ewasm_api = "0.9"
+ewasm_api = { version = "0.9", default-features = false, features = ["std", "qimalloc"] }
 ripemd160 = "0.7"
 
 [lib]

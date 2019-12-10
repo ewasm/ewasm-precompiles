@@ -8,8 +8,10 @@ description = "Ethereum identity precompile in Rust"
 publish = false
 edition = "2018"
 
-[dependencies]
-ewasm_api = "0.9"
+[dependencies.ewasm_api]
+version = "0.9"
+default-features = false
+features = ["std", "qimalloc"]
 
 [lib]
 crate-type = ["cdylib"]
