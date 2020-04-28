@@ -9,8 +9,9 @@ publish = false
 edition = "2018"
 
 [dependencies]
-blake2 = "0.7"
+byteorder = "1.3.4"
 ewasm_api = "0.9"
+arr_macro = "0.1.3"
 
 [lib]
 crate-type = ["cdylib"]
