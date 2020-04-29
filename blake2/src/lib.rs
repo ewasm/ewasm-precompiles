@@ -61,12 +61,14 @@ fn write_data(h: [u64; 8]) -> Vec<u8> {
 
 /// See test cases at https://eips.ethereum.org/EIPS/eip-152.
 ///
-/// You will most likely need to specify a target to run these tests.
-/// Example: `cargo test --target x86_64-unknown-linux-gnu`
+/// You will most likely need to override the default target like so:
+/// Example: `cargo test --target x86_64-unknown-linux-gnu --release`
 #[cfg(test)]
 mod tests {
     extern crate hex;
+
     use crate::blake2_f;
+    use std::time::Instant;
 
     const INPUTS: [&str; 9] = [
         "",
@@ -91,6 +93,9 @@ mod tests {
         "b63a380cb2897d521994a85234ee2c181b5f844d2c624c002677e9703449d2fba551b3a8333bcdf5f2f7e08993d53923de3d64fcc68c034e717b9293fed7a421",
         "fc59093aafa9ab43daae0e914c57635c5402d8e3d2130eb9b3cc181de7f0ecf9b22bf99a7815ce16419e200e01846e6b5df8cc7703041bbceb571de6631d2615",
     ];
+
+    /// 1200 rounds
+    const BENCH_INPUT: &str = "000004B048c9bdf267e6096a3ba7ca8485ae67bb2bf894fe72f36e3cf1361d5f3af54fa5d182e6ad7f520e511f6c3e2b8c68059b6bbd41fbabd9831f79217e1319cde05b61626300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000001";
 
     #[test]
     fn case0() {
@@ -156,6 +161,8 @@ mod tests {
         )
     }
 
+    // This test takes excessively long.
+    //
     // #[test]
     // fn case8() {
     //     assert_eq!(
@@ -163,4 +170,19 @@ mod tests {
     //         Ok((4294967295, hex::decode(OUTPUTS[8]).unwrap())),
     //     );
     // }
+
+    /// run with `-- --nocapture`
+    #[test]
+    fn benchmark() {
+        let n = 1000;
+        let mut sum = 0;
+
+        for _ in 0..n {
+            let now = Instant::now();
+            blake2_f(hex::decode(BENCH_INPUT).unwrap()).expect("Couldn't compress BENCH_INPUT.");
+            sum += now.elapsed().as_nanos();
+        }
+
+        println!("Average elapsed time for 1200 rounds: {}ns", sum / n)
+    }
 }
