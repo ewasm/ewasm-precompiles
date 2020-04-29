@@ -1,8 +1,13 @@
 ///! Implementation of blake2 compression function F.
 ///!
-///! This was copied from here: https://gist.github.com/seunlanlege/fa848401d316c52919f6e554fba6870b
+///! This was copied from https://gist.github.com/seunlanlege/fa848401d316c52919f6e554fba6870b
 ///! with some modifications. It was initially written by Seun Lanlege and has no explicit license.
 
+/// Message word schedule permutations for each round of both BLAKE2b and BLAKE2s are defined by
+/// SIGMA.  For BLAKE2b, the two extra permutations for rounds 10 and 11 are
+/// SIGMA[10..11] = SIGMA[0..1].
+///
+/// https://tools.ietf.org/html/rfc7693#section-2.7
 const SIGMA: [[usize; 16]; 10] = [
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     [14, 10, 4, 8, 9, 15, 13, 6, 1, 12, 0, 2, 11, 7, 5, 3],
@@ -14,8 +19,14 @@ const SIGMA: [[usize; 16]; 10] = [
     [13, 11, 7, 14, 12, 1, 3, 9, 5, 0, 15, 4, 8, 6, 2, 10],
     [6, 15, 14, 9, 11, 3, 0, 8, 12, 2, 13, 7, 1, 4, 10, 5],
     [10, 2, 8, 4, 7, 6, 1, 5, 15, 11, 9, 14, 3, 12, 13, 0],
+
 ];
 
+
+/// IV[i] = floor(2**w * frac(sqrt(prime(i+1)))), where prime(i) is the i:th prime number
+/// ( 2, 3, 5, 7, 11, 13, 17, 19 ) and sqrt(x) is the square root of x.
+///
+/// https://tools.ietf.org/html/rfc7693#section-2.6
 const IV: [u64; 8] = [
     0x6a09e667f3bcc908,
     0xbb67ae8584caa73b,
@@ -27,6 +38,13 @@ const IV: [u64; 8] = [
     0x5be0cd19137e2179,
 ];
 
+/// Compression function F takes as an argument the state vector "h", message block vector "m"
+/// (last block is padded with zeros to full block size, if required), 2w-bit offset counter "t",
+/// and final block indicator flag "f".  Local vector v[0..15] is used in processing. F returns a
+/// new state vector.  The number of rounds, "r", is 12 for BLAKE2b and 10 for BLAKE2s.
+/// Rounds are numbered from 0 to r - 1.
+///
+/// https://tools.ietf.org/html/rfc7693#section-3.2
 pub fn compress(rounds: u32, h: &mut [u64; 8], m: [u64; 16], t: [u64; 2], f: bool) {
     let mut v = Vec::new();
     v.extend(h.iter().cloned());

@@ -18,6 +18,7 @@ pub extern "C" fn main() {
     }
 }
 
+/// The Blake2F precompile written as Result returning function.
 pub fn blake2_f(data: Vec<u8>) -> Result<(u64, Vec<u8>), &'static str> {
     if data.len() == 213 {
         let (rounds, mut h, m, t, f) = read_data(data)?;
@@ -60,6 +61,9 @@ fn write_data(h: [u64; 8]) -> Vec<u8> {
 }
 
 /// See test cases at https://eips.ethereum.org/EIPS/eip-152.
+///
+/// You will most likely need to specify a target to run these tests.
+/// Example: `cargo test --target x86_64-unknown-linux-gnu`
 #[cfg(test)]
 mod tests {
     extern crate hex;
@@ -154,12 +158,11 @@ mod tests {
         )
     }
 
-    // This test is too slow at the moment.
     // #[test]
     // fn case8() {
     //     assert_eq!(
-    //         blake2_f(hex::decode(inputs[8]).unwrap()),
-    //         Ok((4294967295, hex::decode(outputs[8]).unwrap())),
-    //     )
+    //         blake2_f(hex::decode(INPUTS[8]).unwrap()),
+    //         Ok((4294967295, hex::decode(OUTPUTS[8]).unwrap())),
+    //     );
     // }
 }
