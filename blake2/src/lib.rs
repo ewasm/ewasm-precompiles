@@ -13,7 +13,7 @@ pub extern "C" fn main() {
         Ok((gas_used, data)) => {
             ewasm_api::consume_gas(gas_used);
             ewasm_api::finish_data(data.as_slice())
-        },
+        }
         Err(err) => ewasm_api::revert_data(err.as_bytes()),
     }
 }
@@ -42,7 +42,7 @@ fn read_data(data: Vec<u8>) -> Result<(u32, [u64; 8], [u64; 16], [u64; 2], bool)
     let f = match reader.read_u8().expect("Unable to read data.") {
         0 => false,
         1 => true,
-        _ => return Err("incorrect final block indicator flag")
+        _ => return Err("incorrect final block indicator flag"),
     };
 
     Ok((rounds, h, m, t, f))
@@ -52,8 +52,7 @@ fn write_data(h: [u64; 8]) -> Vec<u8> {
     let mut data = vec![];
 
     for i in 0..8 {
-        data
-            .write_u64::<LittleEndian>(h[i])
+        data.write_u64::<LittleEndian>(h[i])
             .expect("Unable to write data.")
     }
 
@@ -80,7 +79,6 @@ mod tests {
         "0000000148c9bdf267e6096a3ba7ca8485ae67bb2bf894fe72f36e3cf1361d5f3af54fa5d182e6ad7f520e511f6c3e2b8c68059b6bbd41fbabd9831f79217e1319cde05b61626300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000001",
         "ffffffff48c9bdf267e6096a3ba7ca8485ae67bb2bf894fe72f36e3cf1361d5f3af54fa5d182e6ad7f520e511f6c3e2b8c68059b6bbd41fbabd9831f79217e1319cde05b61626300000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000001",
     ];
-
 
     const OUTPUTS: [&str; 9] = [
         "",

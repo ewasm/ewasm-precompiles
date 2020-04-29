@@ -19,9 +19,7 @@ const SIGMA: [[usize; 16]; 10] = [
     [13, 11, 7, 14, 12, 1, 3, 9, 5, 0, 15, 4, 8, 6, 2, 10],
     [6, 15, 14, 9, 11, 3, 0, 8, 12, 2, 13, 7, 1, 4, 10, 5],
     [10, 2, 8, 4, 7, 6, 1, 5, 15, 11, 9, 14, 3, 12, 13, 0],
-
 ];
-
 
 /// IV[i] = floor(2**w * frac(sqrt(prime(i+1)))), where prime(i) is the i:th prime number
 /// ( 2, 3, 5, 7, 11, 13, 17, 19 ) and sqrt(x) is the square root of x.
