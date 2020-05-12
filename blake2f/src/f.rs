@@ -1,7 +1,7 @@
-///! Implementation of blake2 compression function F.
-///!
-///! This was copied from https://gist.github.com/seunlanlege/fa848401d316c52919f6e554fba6870b
-///! with some modifications. It was initially written by Seun Lanlege and has no explicit license.
+//! Implementation of blake2 compression function F.
+//!
+//! This was copied from https://gist.github.com/seunlanlege/fa848401d316c52919f6e554fba6870b
+//! with some modifications. It was initially written by Seun Lanlege and has no explicit license.
 
 /// Message word schedule permutations for each round of both BLAKE2b and BLAKE2s are defined by
 /// SIGMA.  For BLAKE2b, the two extra permutations for rounds 10 and 11 are
