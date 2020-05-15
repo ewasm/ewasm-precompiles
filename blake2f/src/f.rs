@@ -1,13 +1,12 @@
-//! Implementation of blake2 compression function F.
-//!
-//! This was copied from https://gist.github.com/seunlanlege/fa848401d316c52919f6e554fba6870b
-//! with some modifications. It was initially written by Seun Lanlege and has no explicit license.
-
-/// Message word schedule permutations for each round of both BLAKE2b and BLAKE2s are defined by
-/// SIGMA.  For BLAKE2b, the two extra permutations for rounds 10 and 11 are
-/// SIGMA[10..11] = SIGMA[0..1].
+/// The following code has been copied from the OpenEthereum project, which is distributed under
+/// the terms of the GNU General Public License. A copy of its license has been included in this
+/// crate.
 ///
-/// https://tools.ietf.org/html/rfc7693#section-2.7
+/// https://github.com/openethereum/openethereum/tree/master/util/EIP-152
+
+/// The precomputed values for BLAKE2b [from the spec](https://tools.ietf.org/html/rfc7693#section-2.7)
+/// There are 10 16-byte arrays - one for each round
+/// the entries are calculated from the sigma constants.
 const SIGMA: [[usize; 16]; 10] = [
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
     [14, 10, 4, 8, 9, 15, 13, 6, 1, 12, 0, 2, 11, 7, 5, 3],
@@ -21,10 +20,8 @@ const SIGMA: [[usize; 16]; 10] = [
     [10, 2, 8, 4, 7, 6, 1, 5, 15, 11, 9, 14, 3, 12, 13, 0],
 ];
 
-/// IV[i] = floor(2**w * frac(sqrt(prime(i+1)))), where prime(i) is the i:th prime number
-/// ( 2, 3, 5, 7, 11, 13, 17, 19 ) and sqrt(x) is the square root of x.
-///
-/// https://tools.ietf.org/html/rfc7693#section-2.6
+/// IV is the initialization vector for BLAKE2b. See https://tools.ietf.org/html/rfc7693#section-2.6
+/// for details.
 const IV: [u64; 8] = [
     0x6a09e667f3bcc908,
     0xbb67ae8584caa73b,
@@ -36,91 +33,48 @@ const IV: [u64; 8] = [
     0x5be0cd19137e2179,
 ];
 
-/// Compression function F takes as an argument the state vector "h", message block vector "m"
-/// (last block is padded with zeros to full block size, if required), 2w-bit offset counter "t",
-/// and final block indicator flag "f".  Local vector v[0..15] is used in processing. F returns a
-/// new state vector.  The number of rounds, "r", is 12 for BLAKE2b and 10 for BLAKE2s.
-/// Rounds are numbered from 0 to r - 1.
-///
-/// https://tools.ietf.org/html/rfc7693#section-3.2
-pub fn compress(rounds: u32, h: &mut [u64; 8], m: [u64; 16], t: [u64; 2], f: bool) {
-    let mut v = Vec::new();
-    v.extend(h.iter().cloned());
-    v.extend_from_slice(&IV);
+/// The G mixing function. See https://tools.ietf.org/html/rfc7693#section-3.1
+#[inline(always)]
+fn g(v: &mut [u64], a: usize, b: usize, c: usize, d: usize, x: u64, y: u64) {
+    v[a] = v[a].wrapping_add(v[b]).wrapping_add(x);
+    v[d] = (v[d] ^ v[a]).rotate_right(32);
+    v[c] = v[c].wrapping_add(v[d]);
+    v[b] = (v[b] ^ v[c]).rotate_right(24);
+
+    v[a] = v[a].wrapping_add(v[b]).wrapping_add(y);
+    v[d] = (v[d] ^ v[a]).rotate_right(16);
+    v[c] = v[c].wrapping_add(v[d]);
+    v[b] = (v[b] ^ v[c]).rotate_right(63);
+}
+
+/// The Blake2b compression function F. See https://tools.ietf.org/html/rfc7693#section-3.2
+/// Takes as an argument the state vector `h`, message block vector `m`, offset counter `t`, final
+/// block indicator flag `f`, and number of rounds `rounds`. The state vector provided as the first
+/// parameter is modified by the function.
+pub fn compress(rounds: usize, h: &mut [u64; 8], m: [u64; 16], t: [u64; 2], f: bool) {
+    let mut v = [0u64; 16];
+    v[..8].copy_from_slice(h); // First half from state.
+    v[8..].copy_from_slice(&IV); // Second half from IV.
 
     v[12] ^= t[0];
     v[13] ^= t[1];
 
     if f {
-        v[14] = !v[14]
+        v[14] = !v[14]; // Invert all bits if the last-block-flag is set.
     }
 
-    for i in 0..rounds as usize {
+    for i in 0..rounds {
+        // Message word selection permutation for this round.
         let s = &SIGMA[i % 10];
-        v[0] = v[0].wrapping_add(v[4]).wrapping_add(m[s[0]]);
-        v[12] = (v[12] ^ v[0]).rotate_right(32);
-        v[8] = v[8].wrapping_add(v[12]);
-        v[4] = (v[4] ^ v[8]).rotate_right(24);
-        v[0] = v[0].wrapping_add(v[4]).wrapping_add(m[s[1]]);
-        v[12] = (v[12] ^ v[0]).rotate_right(16);
-        v[8] = v[8].wrapping_add(v[12]);
-        v[4] = (v[4] ^ v[8]).rotate_right(63);
-        v[1] = v[1].wrapping_add(v[5]).wrapping_add(m[s[2]]);
-        v[13] = (v[13] ^ v[1]).rotate_right(32);
-        v[9] = v[9].wrapping_add(v[13]);
-        v[5] = (v[5] ^ v[9]).rotate_right(24);
-        v[1] = v[1].wrapping_add(v[5]).wrapping_add(m[s[3]]);
-        v[13] = (v[13] ^ v[1]).rotate_right(16);
-        v[9] = v[9].wrapping_add(v[13]);
-        v[5] = (v[5] ^ v[9]).rotate_right(63);
-        v[2] = v[2].wrapping_add(v[6]).wrapping_add(m[s[4]]);
-        v[14] = (v[14] ^ v[2]).rotate_right(32);
-        v[10] = v[10].wrapping_add(v[14]);
-        v[6] = (v[6] ^ v[10]).rotate_right(24);
-        v[2] = v[2].wrapping_add(v[6]).wrapping_add(m[s[5]]);
-        v[14] = (v[14] ^ v[2]).rotate_right(16);
-        v[10] = v[10].wrapping_add(v[14]);
-        v[6] = (v[6] ^ v[10]).rotate_right(63);
-        v[3] = v[3].wrapping_add(v[7]).wrapping_add(m[s[6]]);
-        v[15] = (v[15] ^ v[3]).rotate_right(32);
-        v[11] = v[11].wrapping_add(v[15]);
-        v[7] = (v[7] ^ v[11]).rotate_right(24);
-        v[3] = v[3].wrapping_add(v[7]).wrapping_add(m[s[7]]);
-        v[15] = (v[15] ^ v[3]).rotate_right(16);
-        v[11] = v[11].wrapping_add(v[15]);
-        v[7] = (v[7] ^ v[11]).rotate_right(63);
-        v[0] = v[0].wrapping_add(v[5]).wrapping_add(m[s[8]]);
-        v[15] = (v[15] ^ v[0]).rotate_right(32);
-        v[10] = v[10].wrapping_add(v[15]);
-        v[5] = (v[5] ^ v[10]).rotate_right(24);
-        v[0] = v[0].wrapping_add(v[5]).wrapping_add(m[s[9]]);
-        v[15] = (v[15] ^ v[0]).rotate_right(16);
-        v[10] = v[10].wrapping_add(v[15]);
-        v[5] = (v[5] ^ v[10]).rotate_right(63);
-        v[1] = v[1].wrapping_add(v[6]).wrapping_add(m[s[10]]);
-        v[12] = (v[12] ^ v[1]).rotate_right(32);
-        v[11] = v[11].wrapping_add(v[12]);
-        v[6] = (v[6] ^ v[11]).rotate_right(24);
-        v[1] = v[1].wrapping_add(v[6]).wrapping_add(m[s[11]]);
-        v[12] = (v[12] ^ v[1]).rotate_right(16);
-        v[11] = v[11].wrapping_add(v[12]);
-        v[6] = (v[6] ^ v[11]).rotate_right(63);
-        v[2] = v[2].wrapping_add(v[7]).wrapping_add(m[s[12]]);
-        v[13] = (v[13] ^ v[2]).rotate_right(32);
-        v[8] = v[8].wrapping_add(v[13]);
-        v[7] = (v[7] ^ v[8]).rotate_right(24);
-        v[2] = v[2].wrapping_add(v[7]).wrapping_add(m[s[13]]);
-        v[13] = (v[13] ^ v[2]).rotate_right(16);
-        v[8] = v[8].wrapping_add(v[13]);
-        v[7] = (v[7] ^ v[8]).rotate_right(63);
-        v[3] = v[3].wrapping_add(v[4]).wrapping_add(m[s[14]]);
-        v[14] = (v[14] ^ v[3]).rotate_right(32);
-        v[9] = v[9].wrapping_add(v[14]);
-        v[4] = (v[4] ^ v[9]).rotate_right(24);
-        v[3] = v[3].wrapping_add(v[4]).wrapping_add(m[s[15]]);
-        v[14] = (v[14] ^ v[3]).rotate_right(16);
-        v[9] = v[9].wrapping_add(v[14]);
-        v[4] = (v[4] ^ v[9]).rotate_right(63);
+        g(&mut v, 0, 4, 8, 12, m[s[0]], m[s[1]]);
+        g(&mut v, 1, 5, 9, 13, m[s[2]], m[s[3]]);
+        g(&mut v, 2, 6, 10, 14, m[s[4]], m[s[5]]);
+        g(&mut v, 3, 7, 11, 15, m[s[6]], m[s[7]]);
+
+        g(&mut v, 0, 5, 10, 15, m[s[8]], m[s[9]]);
+        g(&mut v, 1, 6, 11, 12, m[s[10]], m[s[11]]);
+        g(&mut v, 2, 7, 8, 13, m[s[12]], m[s[13]]);
+        g(&mut v, 3, 4, 9, 14, m[s[14]], m[s[15]]);
     }
 
     for i in 0..8 {

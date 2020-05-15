@@ -1,3 +1,5 @@
+//! Blake2f precompile as described in EIP-152
+
 extern crate ewasm_api;
 
 mod f;
@@ -22,7 +24,7 @@ pub extern "C" fn main() {
 pub fn blake2_f(data: Vec<u8>) -> Result<(u64, Vec<u8>), &'static str> {
     if data.len() == 213 {
         let (rounds, mut h, m, t, f) = read_data(data)?;
-        f::compress(rounds, &mut h, m, t, f);
+        f::compress(rounds as usize, &mut h, m, t, f);
 
         return Ok((rounds as u64, write_data(h)));
     }

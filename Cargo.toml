@@ -2,6 +2,7 @@
 
 members = [
     "blake2",
+    "blake2f",
     "bls12pairing",
     "ecadd",
     "ecmul",
