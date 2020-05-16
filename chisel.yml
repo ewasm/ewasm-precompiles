@@ -13,6 +13,21 @@ blake2:
   repack:
     preset: "ewasm"
 
+blake2f:
+  file: "target/wasm32-unknown-unknown/release/ewasm_precompile_blake2f.wasm"
+  remapimports:
+    preset: "ewasm"
+  trimexports:
+    preset: "ewasm"
+  verifyimports:
+    preset: "ewasm"
+  verifyexports:
+    preset: "ewasm"
+  snip:
+    preset: "ewasm"
+  repack:
+    preset: "ewasm"
+
 bls12pairing:
   file: "target/wasm32-unknown-unknown/release/ewasm_precompile_bls12pairing.wasm"
   remapimports:
